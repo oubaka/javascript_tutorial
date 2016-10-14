@@ -2,20 +2,20 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Exercise 5</title>
-	<style>
-		table {
-			border: 2px solid;
-			background: black;
-		}
-		
-		td {
-			border: 1px solid;
-			background: white;
-			padding: 5px;
+  <meta charset="UTF-8">
+  <title>Exercise 5</title>
+  <style>
+    table {
+      border: 2px solid;
+      background: black;
+    }
+    
+    td {
+      border: 1px solid;
+      background: white;
+      padding: 5px;
       min-width: 25vw;
-		}
+    }
 
     .centered{      
       text-align: center;
@@ -25,31 +25,31 @@
     .content{
       display: inline-block;
     }
-	</style>
+  </style>
 </head>
 
 <body>
-	<div class="centered">
+  <div class="centered">
     <button class="content" onclick="addNew()">Add New</button>
   </div>
-	<div class="centered">
-		<table class="content">
-			<thead>
-				<tr>
-					<td>Name</td>
-					<td>Email</td>
-					<td>Action</td>
-				</tr>
-			</thead>
-			<tbody id="table-body">				
+  <div class="centered">
+    <table class="content">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Email</td>
+          <td>Action</td>
+        </tr>
+      </thead>
+      <tbody id="table-body">				
         <tr>
           <td colspan="3" class="centered">
             <button class="content" onclick="addNew()">Add New</button>
           </td>
         </tr>
-			</tbody>
-		</table>
-	</div>
+      </tbody>
+    </table>
+  </div>
 
   <script src="controller.js"></script>
   <script src="index.js"></script>

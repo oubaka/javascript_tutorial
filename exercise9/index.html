@@ -2,37 +2,37 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Exercise 9</title>
-	<style>
-		select {
-			width: 25vw;
-		}
-		
-		option {
-			margin: 5px;
-		}
+  <meta charset="UTF-8">
+  <title>Exercise 9</title>
+  <style>
+    select {
+      width: 25vw;
+    }
+    
+    option {
+      margin: 5px;
+    }
 
     .centered {
-			text-align: center;
-			padding: 5px;
-		}
-		
-		.content {
-			display: inline-block;
+      text-align: center;
+      padding: 5px;
+    }
+    
+    .content {
+      display: inline-block;
       margin: 10px;
       vertical-align: middle;
-		}
+    }
 
     button{
       margin: 10px;
     }
-	</style>
+  </style>
 </head>
 
 <body class="centered">
 
-	<div class="content">    
+  <div class="content">    
     <select name="source" id="source" multiple size="10"></select>
   </div>
 
@@ -41,13 +41,13 @@
     <br>
     <button onclick="controller.remove()"><<< Remove</button>    
   </div>
-	
+  
   <div class="content">    
     <select name="destination" id="destination" multiple size="10"></select>
   </div>
 
-	<script src="controller.js"></script>
-	<script src="index.js"></script>
+  <script src="controller.js"></script>
+  <script src="index.js"></script>
 </body>
 
 </html>
