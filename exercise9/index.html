@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Exercise 9</title>
+	<style>
+		select {
+			width: 25vw;
+		}
+		
+		option {
+			margin: 5px;
+		}
+
+    .centered {
+			text-align: center;
+			padding: 5px;
+		}
+		
+		.content {
+			display: inline-block;
+      margin: 10px;
+      vertical-align: middle;
+		}
+
+    button{
+      margin: 10px;
+    }
+	</style>
+</head>
+
+<body class="centered">
+
+	<div class="content">    
+    <select name="source" id="source" multiple size="10"></select>
+  </div>
+
+  <div class="content">
+    <button onclick="controller.add()">Add >>></button>
+    <br>
+    <button onclick="controller.remove()"><<< Remove</button>    
+  </div>
+	
+  <div class="content">    
+    <select name="destination" id="destination" multiple size="10"></select>
+  </div>
+
+	<script src="controller.js"></script>
+	<script src="index.js"></script>
+</body>
+
+</html>

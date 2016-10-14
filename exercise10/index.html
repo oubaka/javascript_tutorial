@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Exercise 10</title>
+	<style>
+		table {
+			background: #cae6ca;
+			padding: 5px;
+			text-align: left;
+		}
+		
+		td {
+			padding: 5px;
+			min-width: 20vw;
+			border: none;
+		}
+		
+		textarea {
+			width: 100%;
+		}
+		
+		caption {
+			background: lime;
+			padding: 5px;
+		}
+		
+		.centered {
+			text-align: center;
+			padding: 5px;
+		}
+		
+		.content {
+			display: inline-block;
+		}
+	</style>
+</head>
+
+<body>
+	<form name="registration" class="centered" action="" method="POST" onsubmit="submit()">
+		<div class="content">
+			<table>
+				<caption>Registration Form</caption>
+				<tbody id="table-body">
+					<tr>
+						<td>Login Id</td>
+						<td><input name="id" type="text"></td>
+					</tr>
+					<tr>
+						<td>Email</td>
+						<td><input name="email" type="email"></td>
+					</tr>
+					<tr>
+						<td>Name</td>
+						<td><input name="name" type="text"></td>
+					</tr>
+					<tr>
+						<td>Timezone</td>
+						<td>
+							<select name="timezone" id="">
+                <option value="GMT">GMT</option>
+              </select>
+						</td>
+					</tr>
+					<tr>
+						<td>Home Page</td>
+						<td><input name="homepage" type="url"></td>
+					</tr>
+					<tr>
+						<td colspan="2">About me</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<textarea name="about" id="" cols="30" rows="10"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<div>
+								<input name="receive" id="receive" value="true" type="checkbox">
+								<label for="receive">Receive notification of comments.</label>
+							</div>
+							<p>
+								You will be sent an email when someone posts comments to your Blog or Album.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" class="centered">
+							Your password will be mailed to you
+							<br>
+							<button type="submit">Go</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</form>
+
+	<script src="controller.js"></script>
+	<script src="index.js"></script>
+</body>
+
+</html>
