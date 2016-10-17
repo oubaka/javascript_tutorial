@@ -1,5 +1,5 @@
-var source = document.querySelector('select#source');
-var destination = document.querySelector('select#destination');
+var source = document.getElementById('source');
+var destination = document.getElementById('destination');
 
 var models = [
   { name: 'Japan', value: 'JP' },

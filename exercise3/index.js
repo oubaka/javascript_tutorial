@@ -1,3 +1,3 @@
-var checkboxes = document.querySelectorAll('input[type=checkbox]:not([name=None])');
-var noneCheckbox = document.querySelector('input[type=checkbox][name=None]');
+var checkboxes = document.querySelectorAll('#Monday,#Tuesday,#Wednesday,#Thursday,#Friday,#Saturday,#Sunday');
+var noneCheckbox = document.querySelector('#None');
 var controller = new Controller(checkboxes, noneCheckbox);
