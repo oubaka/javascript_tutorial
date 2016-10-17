@@ -1,18 +1,21 @@
 /**
  * @param {Element[]} checkboxes
  */
-function Controller(checkboxes){
+function Controller(checkboxes) {
   this.checkboxes = checkboxes;
 }
 
-Controller.prototype.checkAll = function checkAll(){
-  this.checkboxes.forEach(function (checkbox) {
-    checkbox.checked = true;
-  });
-}
-
-Controller.prototype.none = function none(){
-  this.checkboxes.forEach(function (checkbox) {
-    checkbox.checked = false;
-  });
+Controller.prototype.check = function check(type) {
+  switch (type) {
+    case 'all':
+      this.checkboxes.forEach(function (checkbox) {
+        checkbox.checked = true;
+      });
+      break;
+    case 'none':
+      this.checkboxes.forEach(function (checkbox) {
+        checkbox.checked = false;
+      });
+      break;
+  }
 }
