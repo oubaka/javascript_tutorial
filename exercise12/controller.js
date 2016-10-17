@@ -3,7 +3,7 @@
  */
 function Controller(form) {
   this.form = form;
-  this.form.onsubmit = this.onsubmit.bind(this);
+  this.form.addEventListener('submit', this.onsubmit.bind(this));
   this.urlRegex = /https?:\/\/(([a-zA-Z]+)\.)?([-a-zA-Z0-9@:%_\+~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?)/;
 }
 

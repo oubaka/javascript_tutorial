@@ -6,6 +6,8 @@ function Controller(form, model) {
   this.model = model;
   this.form = form;
   this.errors = [];
+
+  this.form.addEventListener('submit', this.onSubmit.bind(this));
 }
 
 Controller.prototype.isValid = function isValid() {
@@ -25,6 +27,19 @@ Controller.prototype.isValid = function isValid() {
   }
 
   return this.errors.length == 0;
+}
+
+/**
+ * @param {Event} e
+ */
+Controller.prototype.onSubmit = function onSubmit(e){
+  if(this.isValid()){
+    alert('Form submitted successfully');
+  }else{
+    var error = this.getErrors()[0];
+    alert(error.errorMsg);
+  }
+  e.preventDefault();
 }
 
 Controller.prototype.getErrors = function getErrors() {

@@ -70,7 +70,7 @@ Controller.prototype.uncheckAll = function uncheckAll(container) {
  * @param {Element} childContainer, container holding child checkboxes
  */
 Controller.prototype.setupEvent = function setupEvent(element, childContainer) {
-  element.onchange = function onchange() {    
+  element.addEventListener('change', function(e){    
     var checkbox = arguments[1].target;
     var childContainer = arguments[0];
     
@@ -82,7 +82,7 @@ Controller.prototype.setupEvent = function setupEvent(element, childContainer) {
       childContainer.style.height = 0;
       this.uncheckAll(childContainer);
     }    
-  }.bind(this, childContainer);
+  }.bind(this, childContainer));
 }
 
 /**

@@ -12,5 +12,9 @@ function User(name, age) {
  */
 User.prototype.compare = function compare(user) {
   var text = ' is older than ';
-  return this.age > user.age ? this.name + text + user.name : user.name + text + this.name;
+  if(this.age == user.age){
+    return this.name + ' and ' + user.name + ' are of same age';
+  }else{
+    return this.age > user.age ? this.name + text + user.name : user.name + text + this.name;
+  }
 }

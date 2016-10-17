@@ -76,7 +76,7 @@ Controller.prototype.createInputView = function createInputView(container, input
 Controller.prototype.createActionView = function createActionView(container, actionModel) {
   var button = document.createElement('button');
   button.innerHTML = actionModel.name;
-  button.onclick = actionModel.action;
+  button.addEventListener('click', actionModel.action);
   actionModel.htmlElement = button;
   container.appendChild(button);
 }
@@ -111,8 +111,7 @@ Controller.prototype.renderActions = function renderActions() {
 /**
  * @param {Event} e
  */
-Controller.prototype.save = function save(e) {
-  console.log(this, e);
+Controller.prototype.save = function save(e) {  
   var validationPassed = true;
   this.inputModels.forEach(function (model) {
     if(!model.filter.test(model.inputElement.value)){
@@ -124,8 +123,7 @@ Controller.prototype.save = function save(e) {
     this.mode = this.modes[1];    
   }else{
     alert('Please check your input @ row ' + (this.bucket.indexOf(this) + 1));
-  }
-  console.log(this.inputModels);
+  }  
   this.renderInputs();
   this.renderActions();
 };
@@ -133,8 +131,7 @@ Controller.prototype.save = function save(e) {
 /**
  * @param {Event} e
  */
-Controller.prototype.edit = function edit(e) {
-  console.log(this, e);
+Controller.prototype.edit = function edit(e) {  
   this.mode = this.modes[0];
   this.renderInputs();
   this.renderActions();

@@ -30,16 +30,3 @@ var model = {
 
 // form controller
 var controller = new Controller(form, model);
-
-/**
- * @param {Event} e
- */
-document.forms.registration.onsubmit = function submit(e) {  
-  if(controller.isValid()){
-    alert('Form submitted successfully');
-  }else{
-    var error = controller.getErrors()[0];
-    alert(error.errorMsg);
-  }
-  return false;
-}

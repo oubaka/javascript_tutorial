@@ -11,17 +11,17 @@ function Controller(checkboxes, noneCheckbox) {
 
   // register click event for other checkboxes
   this.checkboxes.forEach(function (checkbox) {
-    checkbox.onclick = function onclick() {
-      var target = arguments[0].target;
+    checkbox.addEventListener('click', function(e) {
+      var target = e.target;
       this.handleOthers(target);
-    }.bind(this);
+    }.bind(this))
   }.bind(this));
 
   // register click event for checkbox for none
-  this.noneCheckbox.onclick = function onclick() {
-    var target = arguments[0].target;
+  this.noneCheckbox.addEventListener ('click', function(e) {
+    var target = e.target;
     if (target.checked) this.handleNone();
-  }.bind(this);
+  }.bind(this));
 }
 
 /**
