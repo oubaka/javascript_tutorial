@@ -5,6 +5,10 @@
 function Controller(model, container) {
   this.model = model;
   this.container = container;
+  this.changeEvent = new Event('change', {
+    bubbles: true,
+    cancelable: true
+  });
 
   var fragment = new DocumentFragment();
   this.createView(fragment, this.model);
@@ -48,29 +52,21 @@ Controller.prototype.getContainerTemplate = function getContainerTemplate() {
 /**
  * @param {Element} container, contains children checkboxes
  */
-Controller.prototype.checkAll = function checkAll(container) {  
-  var event = new Event('change', {
-    bubbles: true,
-    cancelable: true
-  });  
+Controller.prototype.checkAll = function checkAll(container) {
   container.querySelectorAll('input[type=checkbox]').forEach(function (checkbox) {
     checkbox.checked = true;
-    checkbox.dispatchEvent(event);
-  });
+    checkbox.dispatchEvent(this.changeEvent);
+  }.bind(this));
 }
 
 /**
  * @param {Element} container, contains children checkboxes
  */
-Controller.prototype.uncheckAll = function uncheckAll(container) { 
-   var event = new Event('change', {
-    bubbles: true,
-    cancelable: true
-  });   
+Controller.prototype.uncheckAll = function uncheckAll(container) {  
   container.querySelectorAll('input[type=checkbox]').forEach(function (checkbox) {
     checkbox.checked = false;
-    checkbox.dispatchEvent(event);
-  });
+    checkbox.dispatchEvent(this.changeEvent);
+  }.bind(this));
 }
 
 /**
@@ -78,9 +74,9 @@ Controller.prototype.uncheckAll = function uncheckAll(container) {
  * @param {Element} childContainer, container holding child checkboxes
  */
 Controller.prototype.setupEvent = function setupEvent(element, childContainer) {
-  element.addEventListener('change', function(childContainer, ev){    
-    var checkbox = ev.target;    
-  
+  element.addEventListener('change', function (childContainer, ev) {
+    var checkbox = ev.target;
+
     if (checkbox.checked) {
       childContainer.style.height = 'initial';
       this.checkAll(childContainer);
@@ -88,7 +84,7 @@ Controller.prototype.setupEvent = function setupEvent(element, childContainer) {
     } else {
       childContainer.style.height = 0;
       this.uncheckAll(childContainer);
-    }    
+    }
   }.bind(this, childContainer));
 }
 
