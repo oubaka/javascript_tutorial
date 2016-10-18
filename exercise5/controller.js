@@ -29,8 +29,9 @@ function Controller(container, bucket) {
 }
 
 Controller.prototype.createRow = function createRow() {
-  var tr = document.createElement('tr');
-  var actionsTd = document.createElement('td');
+  var doc = document;
+  var tr = doc.createElement('tr');
+  var actionsTd = doc.createElement('td');
 
   this.inputModels.forEach(function (model) {
     this.createInputView(tr, model);
@@ -55,9 +56,10 @@ Controller.prototype.createRow = function createRow() {
  * @param {Element} container
  */
 Controller.prototype.createInputView = function createInputView(container, inputModel) {
-  var td = document.createElement('td');
-  var input = document.createElement('input');
-  var label = document.createElement('label');
+  var doc = document;
+  var td = doc.createElement('td');
+  var input = doc.createElement('input');
+  var label = doc.createElement('label');
   input.type = inputModel.type;
   input.name = inputModel.name;
   input.placeholder = inputModel.name;
@@ -81,18 +83,26 @@ Controller.prototype.createActionView = function createActionView(container, act
   container.appendChild(button);
 }
 
+Controller.prototype.renderMode0 = function renderMode0(input) {
+  input.inputElement.style.display = 'initial';
+  input.labelElement.style.display = 'none';
+  input.inputElement.innerHTML = input.value;
+}
+
+Controller.prototype.renderMode1 = function renderMode1(input) {
+  input.inputElement.style.display = 'none';
+  input.labelElement.style.display = 'initial';
+  input.labelElement.innerHTML = input.value;
+}
+
 Controller.prototype.renderInputs = function renderInputs() {
   this.inputModels.forEach(function (input) {
     switch (this.mode) {
       case this.modes[0]:
-        input.inputElement.style.display = 'initial';
-        input.labelElement.style.display = 'none';
-        input.inputElement.innerHTML = input.value;
+        this.renderMode0(input);
         break;
       case this.modes[1]:
-        input.inputElement.style.display = 'none';
-        input.labelElement.style.display = 'initial';
-        input.labelElement.innerHTML = input.value;
+        this.renderMode1(input);
         break;
     }
   }.bind(this));
@@ -100,30 +110,25 @@ Controller.prototype.renderInputs = function renderInputs() {
 
 Controller.prototype.renderActions = function renderActions() {
   this.actionModels.forEach(function (action) {
-    if (action.mode === this.mode) {
-      action.htmlElement.style.display = 'initial';
-    } else {
-      action.htmlElement.style.display = 'none';
-    }
+    action.htmlElement.style.display = action.mode === this.mode ? 'initial' : 'none';    
   }.bind(this));
 }
 
 /**
  * @param {Event} e
  */
-Controller.prototype.save = function save(e) {  
+Controller.prototype.save = function save(e) {
   var validationPassed = true;
   this.inputModels.forEach(function (model) {
-    if(!model.filter.test(model.inputElement.value)){
+    if (!model.filter.test(model.inputElement.value)) {
       validationPassed = false;
+      alert('Please check ' + model.name + ' input @ row ' + (this.bucket.indexOf(this) + 1));
     }
     model.value = model.inputElement.value;
   }.bind(this));
-  if(validationPassed){
-    this.mode = this.modes[1];    
-  }else{
-    alert('Please check your input @ row ' + (this.bucket.indexOf(this) + 1));
-  }  
+  if (validationPassed) {
+    this.mode = this.modes[1];
+  }
   this.renderInputs();
   this.renderActions();
 };
@@ -131,7 +136,7 @@ Controller.prototype.save = function save(e) {
 /**
  * @param {Event} e
  */
-Controller.prototype.edit = function edit(e) {  
+Controller.prototype.edit = function edit(e) {
   this.mode = this.modes[0];
   this.renderInputs();
   this.renderActions();

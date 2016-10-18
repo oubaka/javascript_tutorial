@@ -6,4 +6,6 @@ function addNew(){
   controllers.unshift(controller);
 }
 
+document.getElementById('add').addEventListener('click', addNew);
+
 addNew();
