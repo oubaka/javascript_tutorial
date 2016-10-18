@@ -18,11 +18,17 @@ Controller.prototype.isValid = function isValid() {
     if (model.filter) {
       if (!model.filter.test(inputElement.value)) {
         this.errors.push(model);
+        inputElement.classList.add('error');
+      }else{
+        inputElement.classList.remove('error');
       }
     } else if (model.stateProperty) {
       if (inputElement[model.stateProperty] !== model.stateValue) {
         this.errors.push(model);
-      }      
+        inputElement.parentElement.classList.add('error');
+      }else{
+        inputElement.parentElement.classList.remove('error');
+      }  
     }
   }
 
@@ -36,8 +42,9 @@ Controller.prototype.onSubmit = function onSubmit(e){
   if(this.isValid()){
     alert('Form submitted successfully');
   }else{
-    var error = this.getErrors()[0];
-    alert(error.errorMsg);
+    this.getErrors().forEach(function(err){
+      alert(err.errorMsg);
+    });
   }
   e.preventDefault();
 }

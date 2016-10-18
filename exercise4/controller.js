@@ -6,7 +6,9 @@ function Controller(model, container) {
   this.model = model;
   this.container = container;
 
-  this.createView(this.container, this.model);
+  var fragment = new DocumentFragment();
+  this.createView(fragment, this.model);
+  this.container.appendChild(fragment);
 }
 
 /**
@@ -17,12 +19,13 @@ function Controller(model, container) {
  * @return Element
  */
 Controller.prototype.getViewTemplate = function getViewTemplate(name) {
-  var li = document.createElement('li');
-  var checkbox = document.createElement('input');
+  var doc = document;
+  var li = doc.createElement('li');
+  var checkbox = doc.createElement('input');
   checkbox.name = name;
   checkbox.id = name;
   checkbox.type = 'checkbox';
-  var label = document.createElement('label');
+  var label = doc.createElement('label');
   label.innerHTML = name;
   label.setAttribute('for', name);
 
@@ -35,7 +38,8 @@ Controller.prototype.getViewTemplate = function getViewTemplate(name) {
  * @return Element
  */
 Controller.prototype.getContainerTemplate = function getContainerTemplate() {
-  var ul = document.createElement('ul');
+  var doc = document;
+  var ul = doc.createElement('ul');
   ul.classList.add('child');
   ul.style.height = 0;
   return ul;
@@ -45,8 +49,10 @@ Controller.prototype.getContainerTemplate = function getContainerTemplate() {
  * @param {Element} container, contains children checkboxes
  */
 Controller.prototype.checkAll = function checkAll(container) {  
-  var event = document.createEvent("HTMLEvents");
-  event.initEvent("change", true, true);
+  var event = new Event('change', {
+    bubbles: true,
+    cancelable: true
+  });  
   container.querySelectorAll('input[type=checkbox]').forEach(function (checkbox) {
     checkbox.checked = true;
     checkbox.dispatchEvent(event);
@@ -57,8 +63,10 @@ Controller.prototype.checkAll = function checkAll(container) {
  * @param {Element} container, contains children checkboxes
  */
 Controller.prototype.uncheckAll = function uncheckAll(container) { 
-  var event = document.createEvent("HTMLEvents");
-  event.initEvent("change", true, true); 
+   var event = new Event('change', {
+    bubbles: true,
+    cancelable: true
+  });   
   container.querySelectorAll('input[type=checkbox]').forEach(function (checkbox) {
     checkbox.checked = false;
     checkbox.dispatchEvent(event);
@@ -70,10 +78,9 @@ Controller.prototype.uncheckAll = function uncheckAll(container) {
  * @param {Element} childContainer, container holding child checkboxes
  */
 Controller.prototype.setupEvent = function setupEvent(element, childContainer) {
-  element.addEventListener('change', function(e){    
-    var checkbox = arguments[1].target;
-    var childContainer = arguments[0];
-    
+  element.addEventListener('change', function(childContainer, ev){    
+    var checkbox = ev.target;    
+  
     if (checkbox.checked) {
       childContainer.style.height = 'initial';
       this.checkAll(childContainer);

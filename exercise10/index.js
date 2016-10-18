@@ -14,7 +14,7 @@ var model = {
     errorMsg: 'name can not be less than 2 characters'
   },
   homepage: {
-    filter: /https?:\/\/(([a-zA-Z]+)\.)?([-a-zA-Z0-9@:%_\+~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?)/,
+    filter: /^(https?:\/\/)?(([a-zA-Z]+)\.)?(([-a-zA-Z0-9@:%_\+~#?&//=]{2,256}\.[a-z]{2,4})\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?)$/,
     errorMsg: 'homepage is not a valid website address'
   },
   about: {

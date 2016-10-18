@@ -10,7 +10,8 @@ function Controller(form){
  * @param {Event} e
  */
 Controller.prototype.onsubmit = function onsubmit(e){  
-  if(!isNaN(e.target.number.value)){
+  if(!isNaN(e.target.number.value)
+  ){
     e.target.result.value = true;
     alert('Form submitted successfully');
   }else{

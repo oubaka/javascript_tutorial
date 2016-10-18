@@ -21,22 +21,12 @@ Controller.prototype.initialize = function initialize() {
   }.bind(this));
 }
 
-Controller.prototype.add = function add() {
-  var destination = this.destination;
-  var selections = this.source.selectedOptions;
+Controller.prototype.move = function move(isSource) {
+  var destination = isSource ? this.destination : this.source;
+  var selections = isSource ? this.source.selectedOptions : this.destination.selectedOptions;
   while (selections.length > 0) {
     if (selections[0]) {
       destination.appendChild(selections[0]);
-    }
-  }
-}
-
-Controller.prototype.remove = function remove() {
-  var source = this.source;
-  var selections = this.destination.selectedOptions;
-  while (selections.length > 0) {
-    if (selections[0]) {
-      source.appendChild(selections[0]);
     }
   }
 }
