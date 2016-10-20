@@ -83,26 +83,25 @@ Controller.prototype.createActionView = function createActionView(container, act
   container.appendChild(button);
 }
 
-Controller.prototype.renderMode0 = function renderMode0(input) {
-  input.inputElement.style.display = 'initial';
-  input.labelElement.style.display = 'none';
-  input.inputElement.innerHTML = input.value;
-}
-
-Controller.prototype.renderMode1 = function renderMode1(input) {
-  input.inputElement.style.display = 'none';
-  input.labelElement.style.display = 'initial';
-  input.labelElement.innerHTML = input.value;
+/**
+ * @param {string} value
+ * @param {Element} e1 - Element to hide
+ * @param {Element} e2 - Element to show
+ */
+Controller.prototype.render = function render(value, e1, e2) {
+  e1.style.display = 'none';
+  e2.style.display = 'initial';
+  e2.innerHTML = value;
 }
 
 Controller.prototype.renderInputs = function renderInputs() {
   this.inputModels.forEach(function (input) {
     switch (this.mode) {
       case this.modes[0]:
-        this.renderMode0(input);
+        this.render(input.value, input.labelElement, input.inputElement);
         break;
-      case this.modes[1]:
-        this.renderMode1(input);
+      case this.modes[1]:        
+        this.render(input.value, input.inputElement, input.labelElement);
         break;
     }
   }.bind(this));
